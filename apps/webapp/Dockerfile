@@ -13,5 +13,5 @@ RUN yarn workspace webapp build
 
 FROM nginx:alpine
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY apps/webapp/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/apps/webapp/dist /usr/share/nginx/html

@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     build:
       context: .
-      dockerfile: Dockerfile-api
+      dockerfile: apps/api/Dockerfile
     networks:
       - internal
 
@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
     build:
       context: .
-      dockerfile: Dockerfile-webapp
+      dockerfile: apps/webapp/Dockerfile
     ports:
       - '80:80'
     networks:

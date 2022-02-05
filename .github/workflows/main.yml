@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
       - uses: tj-actions/changed-files@v14.3
         id: changed-files
-      - if: ${{ contains(steps.changed-files.outputs.all_changed_files, 'apps/api/') || contains(steps.changed-files.outputs.all_changed_files, 'Dockerfile-api') }}
+      - if: contains(steps.changed-files.outputs.all_changed_files, 'apps/api/')
         run: docker-compose up --build --force-recreate --no-deps -d nest_api
 
   deploy-webapp:
@@ -32,7 +32,7 @@ jobs:
           fetch-depth: 0
       - uses: tj-actions/changed-files@v14.3
         id: changed-files
-      - if: ${{ contains(steps.changed-files.outputs.all_changed_files, 'apps/webapp/') || contains(steps.changed-files.outputs.all_changed_files, 'Dockerfile-webapp') || contains(steps.changed-files.outputs.all_changed_files, 'nginx.conf') }}
+      - if: contains(steps.changed-files.outputs.all_changed_files, 'apps/webapp/')
         run: docker-compose up --build --force-recreate --no-deps -d react_app
 
   clear:
