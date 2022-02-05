@@ -8,6 +8,8 @@ COPY package.json .
 COPY yarn.lock .
 COPY apps/webapp/ apps/webapp/
 
+ENV NODE_ENV=production
+
 RUN yarn workspaces focus webapp
 RUN yarn workspace webapp build
 
