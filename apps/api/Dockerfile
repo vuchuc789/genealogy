@@ -8,6 +8,8 @@ COPY package.json .
 COPY yarn.lock .
 COPY apps/api/ apps/api/
 
+ENV NODE_ENV=production
+
 RUN yarn workspaces focus api
 RUN yarn workspace api build
 
@@ -22,6 +24,8 @@ COPY yarn.lock .
 COPY apps/api/package.json apps/api/
 
 COPY --from=builder /app/apps/api/dist/ apps/api/dist/
+
+ENV NODE_ENV=production
 
 RUN yarn workspaces focus api --production
 
