@@ -15,10 +15,19 @@ services:
     build:
       context: .
       dockerfile: apps/webapp/Dockerfile
+    volumes:
+      - ~/resources/certs/:/etc/letsencrypt/
+      - ~/resources/www/:/usr/share/nginx/html/
     ports:
       - '80:80'
     networks:
       - internal
+
+  # certbot:
+  #   image: certbot/certbot:latest
+  #   volumes:
+  #     - ~/resources/certs/:/etc/letsencrypt/
+  #     - ~/resources/html/:/usr/share/nginx/html/
 
 networks:
   internal:
