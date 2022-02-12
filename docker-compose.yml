@@ -39,6 +39,8 @@ services:
 
   certbot:
     image: certbot/certbot:arm64v8-latest
+    profiles:
+      - cert
     volumes:
       - ~/volumes/dist:/usr/share/nginx/html
       - ~/volumes/certs:/etc/letsencrypt
