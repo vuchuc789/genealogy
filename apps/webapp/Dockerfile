@@ -1,4 +1,4 @@
-FROM node:16-alpine AS builder
+FROM node:16-alpine
 
 WORKDIR /app
 
@@ -11,9 +11,6 @@ COPY apps/webapp/ apps/webapp/
 ENV NODE_ENV=production
 
 RUN yarn workspaces focus webapp
-RUN yarn workspace webapp build
 
-FROM nginx:alpine
+CMD ["yarn", "workspace", "webapp", "build"]
 
-COPY apps/webapp/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/apps/webapp/dist /usr/share/nginx/html
