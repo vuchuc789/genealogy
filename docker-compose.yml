@@ -19,7 +19,7 @@ services:
       - runner
       - main
     networks:
-      - internal
+      - main
 
   proxy:
     container_name: genealogy-proxy
@@ -35,6 +35,12 @@ services:
     volumes:
       - ~/volumes/dist:/usr/share/nginx/html
     networks:
-      - internal
+      - main
+
+  certbot:
+    image: certbot/certbot:arm64v8-latest
+    volumes:
+      - ~/volumes/dist:/usr/share/nginx/html
+      - ~/volumes/certs:/etc/letsencrypt
 networks:
-  internal:
+  main:
