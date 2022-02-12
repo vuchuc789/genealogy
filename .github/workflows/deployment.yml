@@ -23,7 +23,7 @@ jobs:
         run: docker-compose up --build --force-recreate --no-deps -d webapp
 
   deploy-api:
-    needs: check
+    needs: check-runner
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
         run: docker-compose up --build --force-recreate --no-deps -d api
 
   deploy-proxy:
-    needs: check
+    needs: check-runner
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
