@@ -5,7 +5,7 @@
   "description": "frontend",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "touch dist/_ && rimraf dist/* && tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --ext .ts,.tsx --ignore-path .gitignore ."
   },
@@ -27,6 +27,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "postcss": "^8.4.6",
     "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
     "tailwindcss": "^3.0.18",
     "typescript": "^4.5.5",
     "vite": "^2.7.13"
