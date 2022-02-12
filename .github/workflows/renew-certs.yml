@@ -11,4 +11,4 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-      - run: docker compose run --rm certbot certonly --webroot --webroot-path /usr/share/nginx/html/ --force-renewal --agree-tos --quiet -m vuchuc781999@gmail.com -d family-tree.ddns.net
+      - run: docker-compose run --rm certbot certonly --webroot --webroot-path /usr/share/nginx/html/ --force-renewal --agree-tos --quiet -m vuchuc781999@gmail.com -d family-tree.ddns.net
