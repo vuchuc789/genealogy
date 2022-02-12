@@ -1,24 +1,40 @@
 version: '3.9'
 services:
-  nest_api:
-    container_name: nest_api
+  webapp:
+    build:
+      context: .
+      dockerfile: apps/webapp/Dockerfile
+    profiles:
+      - main
+    volumes:
+      - ~/volumes/dist:/app/apps/webapp/dist
+
+  api:
+    container_name: genealogy-api
     restart: unless-stopped
     build:
       context: .
       dockerfile: apps/api/Dockerfile
+    profiles:
+      - runner
+      - main
     networks:
       - internal
 
-  react_app:
-    container_name: react_app
+  proxy:
+    container_name: genealogy-proxy
     restart: unless-stopped
     build:
       context: .
-      dockerfile: apps/webapp/Dockerfile
+      dockerfile: proxy/Dockerfile
+    profiles:
+      - runner
+      - main
     ports:
-      - '80:80'
+      - 80:80
+    volumes:
+      - ~/volumes/dist:/usr/share/nginx/html
     networks:
       - internal
-
 networks:
   internal:
