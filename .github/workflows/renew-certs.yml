@@ -12,10 +12,3 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker-compose run --rm certbot certonly --webroot --webroot-path /usr/share/nginx/html/ --force-renewal --agree-tos --quiet -m vuchuc781999@gmail.com -d family-tree.ddns.net
-
-  clean-up:
-    if: ${{ always() }}
-    needs: [renew-certs]
-    runs-on: self-hosted
-    steps:
-      - run: docker system prune -af
