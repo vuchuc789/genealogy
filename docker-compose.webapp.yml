@@ -1,0 +1,12 @@
+# This file uses for specifying configurations of webapp.
+
+version: '3.9'
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: apps/webapp/Dockerfile
+    profiles:
+      - main
+    volumes:
+      - ~/volumes/dist:/app/apps/webapp/dist

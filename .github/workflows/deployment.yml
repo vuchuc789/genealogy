@@ -9,7 +9,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-      - run: docker-compose --profile runner up -d --remove-orphans
+      - run: docker-compose -f docker-compose.yml -f docker-compose.webapp.yml --profile runner up -d --remove-orphans
 
   rebuild-webapp:
     runs-on: self-hosted
@@ -19,8 +19,8 @@ jobs:
           fetch-depth: 0
       - uses: tj-actions/changed-files@v14.3
         id: changed-files
-      - if: contains(steps.changed-files.outputs.all_changed_files, 'apps/webapp/') || contains(steps.changed-files.outputs.all_changed_files, 'docker-compose.yml')
-        run: docker-compose up --build --force-recreate --no-deps -d webapp
+      - if: contains(steps.changed-files.outputs.all_changed_files, 'apps/webapp/') || contains(steps.changed-files.outputs.all_changed_files, 'docker-compose.webapp.yml')
+        run: docker-compose -f docker-compose.webapp.yml up --build --force-recreate --no-deps -d webapp
 
   deploy-api:
     needs: check-runner
