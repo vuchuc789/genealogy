@@ -1,14 +1,5 @@
 version: '3.9'
 services:
-  webapp:
-    build:
-      context: .
-      dockerfile: apps/webapp/Dockerfile
-    profiles:
-      - main
-    volumes:
-      - ~/volumes/dist:/app/apps/webapp/dist
-
   api:
     container_name: genealogy-api
     restart: unless-stopped
@@ -46,5 +37,6 @@ services:
     volumes:
       - ~/volumes/dist:/usr/share/nginx/html
       - ~/volumes/certs:/etc/letsencrypt
+    command: certonly --webroot --webroot-path /usr/share/nginx/html/ --force-renewal --agree-tos --quiet -m vuchuc781999@gmail.com -d family-tree.ddns.net
 networks:
   main:
