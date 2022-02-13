@@ -46,7 +46,7 @@ jobs:
       - if: contains(steps.changed-files.outputs.all_changed_files, 'proxy/')
         run: docker-compose up --build --force-recreate --no-deps -d proxy
 
-  clear:
+  clean-up:
     if: ${{ always() }}
     needs: [rebuild-webapp, deploy-api, deploy-proxy]
     runs-on: self-hosted
